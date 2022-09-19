@@ -61,8 +61,6 @@ app.get('/', async (req,res)=>{
 
 
 
-
-
 //set DB connection
 const appDataSource = new DataSource({
     type:"mariadb",
