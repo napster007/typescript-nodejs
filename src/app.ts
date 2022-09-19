@@ -3,6 +3,8 @@ import express from 'express';
 import { DataSource } from "typeorm";
 import { User } from "./entities/User";
 import { Profile } from "./entities/Profile";
+import { Company } from "./entities/Company";
+import { Product } from "./entities/Product";
 const app = express();
 
 app.use(express.json());
@@ -13,8 +15,8 @@ const port = 9070;
 
 app.get('/', async (req,res)=>{
     //res.send("Hello form the Express world");
-    const userRepo = appDataSource.getRepository(User);
-    const profileRepo = appDataSource.getRepository(Profile);
+    // const userRepo = appDataSource.getRepository(User);
+    // const profileRepo = appDataSource.getRepository(Profile);
     //////Create User
     // let profile : Profile = new Profile();
     // profile.gender = "female";
@@ -29,8 +31,8 @@ app.get('/', async (req,res)=>{
     //res.json(userInserted);
 
     //get all records
-    const allRecords = await userRepo.find();
-    res.json(allRecords);
+    // const allRecords = await userRepo.find();
+    // res.json(allRecords);
 
     // const getRecord = await userRepo.findOne({where : {
     //     id:3
@@ -57,6 +59,35 @@ app.get('/', async (req,res)=>{
     //await profileRepo.delete(3);
     //res.send("Profile deleted");
    
+    const compnayRepo = appDataSource.getRepository(Company);
+
+    //insert
+    let products : Product[] = [];
+    let iphone = new Product();
+    iphone.name="Iphone";
+    iphone.description="XR";
+    iphone.price = 25000;
+
+    let ipad = new Product();
+    ipad.name="IPAD";
+    ipad.description=" IP 3";
+    ipad.price = 22000;
+
+    let macBook = new Product();
+    macBook.name="MACBook Air";
+    macBook.description="AIr ver 1";
+    macBook.price = 50000;
+
+    products.push(iphone,ipad,macBook);
+
+    let company : Company =  new Company();
+    company.name ="Apple";
+    company.description="Tech compnay";
+    company.products = products;
+
+    const dataInserted = await compnayRepo.save(company);
+
+    res.json(dataInserted);
 });
 
 

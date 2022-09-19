@@ -12,6 +12,6 @@ export class Company{
     @Column()
     description:string;
 
-    @OneToMany(()=> Product, (product)=> product.company )
+    @OneToMany(()=> Product, (product)=> product.company,{cascade: true} )
     products:Product[];
 }
