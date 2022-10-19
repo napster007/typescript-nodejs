@@ -11,7 +11,7 @@ export const appDataSource = new DataSource({
     password:'nodejsmysqlts',
    database:'typeOrmTsNodeJsMysql',
    entities:["src/entities/*{.ts,.js}"],
-   synchronize:true,
+   synchronize:false,
    logging:true
        
 });

@@ -45,4 +45,7 @@ export class ApplicationForm{
     @JoinColumn()
     product_id: Product;
 
+    @Column()
+    application_date:Date;
+
 }
